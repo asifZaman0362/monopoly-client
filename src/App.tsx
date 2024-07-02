@@ -34,6 +34,7 @@ function CellItem({ cell }: { cell: Cell }) {
 
 function App() {
   const [board, setBoard] = React.useState<Board>();
+  const canvas = React.useRef<HTMLCanvasElement>(null);
   React.useEffect(() => {
     fetch("http://localhost:8080/board")
       .then(res => res.json()
@@ -41,44 +42,33 @@ function App() {
         .catch(console.error))
       .catch(console.error);
   }, []);
+  React.useEffect(() => {
+    function drawCell(cell: Cell, ctx: CanvasRenderingContext2D) {
+      ctx.beginPath();
+      const width = 1000 / 9;
+      const height = 200;
+      ctx.rect(cell.pos % 10 * width, Math.floor(cell.pos / 10) * height, 1000 / 9, 200);
+      if (isCity(cell.kind)) {
+        ctx.fillStyle = cell.kind.City.color.toLowerCase();
+        ctx.fillRect(cell.pos % 10 * width, Math.floor(cell.pos / 10) * height, 1000 / 9, 30);
+      }
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+    }
+    if (canvas.current) {
+      let ctx = canvas.current.getContext("2d");
+      if (ctx) {
+        if (board) {
+          for (let cell of board) {
+            drawCell(cell, ctx);
+          }
+        }
+      }
+    }
+    console.log("wow");
+  }, [canvas, board]);
   return (
-    <div className="App">
-      <div className='grid'>
-        <div className='topRow'>
-          {board && board.slice(20, 31).map(cell => {
-            return <div className="cell">
-              <CellItem cell={cell} />
-            </div>;
-          })}
-        </div>
-        <div className="centre-parent">
-          <div className="leftColumn">
-            {board && board.slice(11, 20).reverse().map(cell => {
-              return <div className="cell">
-                <CellItem cell={cell} />
-              </div>;
-            })}
-          </div>
-          <div className="centre">
-
-          </div>
-          <div className="rightColumn">
-            {board && board.slice(31, 40).map(cell => {
-              return <div className="cell">
-                <CellItem cell={cell} />
-              </div>;
-            })}
-          </div>
-        </div>
-        <div className='bottomRow'>
-          {board && board.slice(0, 11).reverse().map(cell => {
-            return <div className="cell">
-              <CellItem cell={cell} />
-            </div>;
-          })}
-        </div>
-      </div>
-    </div>
+    <canvas ref={canvas} width={1400} height={1400} />
   );
 }
 

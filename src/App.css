@@ -49,9 +49,6 @@ body {
   }
 }
 
-.cell {
-  flex: 1;
-}
 
 .grid {
   display: flex;
@@ -75,11 +72,6 @@ body {
   flex-direction: column;
 }
 
-.leftColumn .cell, .rightColumn .cell {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-}
-
 .centre-parent {
   flex-grow: 1;
   display: flex;
@@ -91,8 +83,9 @@ body {
 }
 
 .cell {
-  flex: 1;
   display: flex;
+  width: calc(1000px / 9);
+  height: 200px;
 }
 
 .topRow .cell div, .bottomRow .cell div {
@@ -101,8 +94,6 @@ body {
 
 .topRow .cell, .bottomRow .cell {
   flex-direction: row;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
 }
 
 .cell p {
@@ -115,14 +106,8 @@ body {
   flex-grow: 1;
 }
 
-.topRow .color, .bottomRow .color {
+.color {
   height: 30px;
-  border-bottom: 1px solid black;
-}
-
-.leftColumn .color, .rightColumn .color {
-  width: 30px;
-  border-right: 1px solid black;
 }
 
 .Red {
@@ -157,14 +142,8 @@ body {
   background-color: purple;
 }
 
-.bottomRow .cell:last-child, .bottomRow .cell:first-child, .topRow .cell:last-child, .topRow .cell:first-child {
-  width: 199px;
-  height: 199px;
-  border: 1px solid black;
-  flex: none !important;
-}
-
-.topRow .cell, .bottomRow .cell {
+.topRow .cell:not(:first-child)
+, .bottomRow .cell:not(:last-child) {
   border-right: 1px solid black;
 }
 
@@ -176,29 +155,52 @@ body {
   border-top: none;
 }
 
-.leftColumn .cell, .rightColumn .cell {
-  border-bottom: 1px solid black;
-}
-
 .leftColumn .city, .rightColumn .city {
   display: flex;
   flex: 1;
   flex-direction: row;
 }
 
-.leftColumn .city .name, .rightColumn .city .name {
-  flex: 1;
-}
-
 .topRow .cell:first-child, .topRow .cell:last-child {
   border-bottom: none;
 }
 
-.leftColumn .cell:first-child, .rightColumn .cell:first-child {
+.leftColumn .cell:not(:first-child), .rightColumn .cell:not(:first-child) {
   border-top: 1px solid black;
 }
 
 .name {
   text-transform: uppercase;
   font-weight: 600;
+}
+
+.topRow .cell {
+  transform: rotate(180deg);
+}
+
+.topRow, .bottomRow {
+  border: 1px solid black;
+}
+
+.leftColumn, .rightColumn {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.vert .cell {
+  transform: rotate(90deg);
+}
+
+.topRow .cell, .bottomRow .cell {
+  flex: 1;
+}
+
+.horiz .cell:not(:first-child), .horiz .cell:not(:last-child) {
+  width: calc(1000px / 9);
+}
+
+.horiz .cell:first-child, .horiz .cell:last-child {
+  width: 200px;
+  height: 200px;
+  flex: unset;
 }

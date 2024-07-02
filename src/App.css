@@ -1,5 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+body {
+  font-family: "Dosis" !important;
+}
+
 .App {
   text-align: center;
+  width: 100vw;
+  min-height: 1500px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -35,4 +47,158 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.cell {
+  flex: 1;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  height: 1400px;
+  padding: 40px;
+}
+
+.topRow, .bottomRow {
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+}
+
+.leftColumn, .rightColumn {
+  justify-content: stretch;
+  align-items: stretch;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftColumn .cell, .rightColumn .cell {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.centre-parent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.centre {
+  flex-grow: 1;
+}
+
+.cell {
+  flex: 1;
+  display: flex;
+}
+
+.topRow .cell div, .bottomRow .cell div {
+  flex-grow: 1;
+}
+
+.topRow .cell, .bottomRow .cell {
+  flex-direction: row;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.cell p {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.topRow .color, .bottomRow .color {
+  flex-grow: 1;
+}
+
+.topRow .color, .bottomRow .color {
+  height: 30px;
+  border-bottom: 1px solid black;
+}
+
+.leftColumn .color, .rightColumn .color {
+  width: 30px;
+  border-right: 1px solid black;
+}
+
+.Red {
+  background-color: red;
+}
+
+.Orange {
+  background-color: orange;
+}
+
+.Cyan {
+  background-color: cadetblue;
+}
+
+.Yellow {
+  background-color: yellow;
+}
+
+.Green {
+  background-color: green;
+}
+
+.Blue {
+  background-color: blue;
+}
+
+.Brown {
+  background-color: brown;
+}
+
+.Purple {
+  background-color: purple;
+}
+
+.bottomRow .cell:last-child, .bottomRow .cell:first-child, .topRow .cell:last-child, .topRow .cell:first-child {
+  width: 199px;
+  height: 199px;
+  border: 1px solid black;
+  flex: none !important;
+}
+
+.topRow .cell, .bottomRow .cell {
+  border-right: 1px solid black;
+}
+
+.bottomRow .cell:last-child, .topRow .cell:last-child {
+  border-left: none;
+}
+
+.bottomRow .cell:first-child, .bottomRow .cell:last-child {
+  border-top: none;
+}
+
+.leftColumn .cell, .rightColumn .cell {
+  border-bottom: 1px solid black;
+}
+
+.leftColumn .city, .rightColumn .city {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.leftColumn .city .name, .rightColumn .city .name {
+  flex: 1;
+}
+
+.topRow .cell:first-child, .topRow .cell:last-child {
+  border-bottom: none;
+}
+
+.leftColumn .cell:first-child, .rightColumn .cell:first-child {
+  border-top: 1px solid black;
+}
+
+.name {
+  text-transform: uppercase;
+  font-weight: 600;
 }
